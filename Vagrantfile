@@ -25,6 +25,13 @@ Vagrant.configure(2) do |config|
     override.vm.box = "withinboredom/Trusty64"
   end
 
+  # Create a chain of priority for providers.
+  config.vm.provider "hyperv" # Prefer HyperV, this will only be avalible on Windows.
+  config.vm.provider "vmware_fusion" # Use VMWare if installed, HashiCorp maintains an offical plugin for VMWare.
+  config.vm.provider "vmware_workstation" # Ditto.
+  config.vm.provider "parallels" # Prefer Parallels if installed.
+  config.vm.provider "virtualbox" # Use VirtualBox if nothing else is set up.
+
   # Install FRC API and Simulator according to https://wpilib.screenstepslive.com/s/4485/m/23353/l/228979-installing-frcsim-with-a-terminal
   config.vm.provision "shell", path: 'http://first.wpi.edu/FRC/roborio/release/frcsim-installer.sh', args: 'INSTALLER'
 end
