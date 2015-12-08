@@ -12,7 +12,13 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "hashicorp/precise64"
+  config.vm.box = "box-cutter/ubuntu1404-desktop"
+
+  # Disable VirtualBox GUI from opening by default.
+  # You can tell Vagrant to open the GUI, or use X-Server tunneling over SSH.
+  config.vm.provider "virtualbox" do |v|
+    v.gui = false
+  end
 
   # Install FRC API and Simulator according to https://wpilib.screenstepslive.com/s/4485/m/23353/l/228979-installing-frcsim-with-a-terminal
   config.vm.provision "shell", path: 'http://first.wpi.edu/FRC/roborio/release/frcsim-installer.sh', args: 'INSTALLER'
