@@ -34,4 +34,9 @@ Vagrant.configure(2) do |config|
 
   # Install FRC API and Simulator according to https://wpilib.screenstepslive.com/s/4485/m/23353/l/228979-installing-frcsim-with-a-terminal
   config.vm.provision "shell", path: 'http://first.wpi.edu/FRC/roborio/release/frcsim-installer.sh', args: 'INSTALLER'
+
+  config.push.define "atlas" do |push|
+    push.app = "kepler/frc"
+    push.vcs = true
+  end
 end
