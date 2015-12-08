@@ -20,6 +20,11 @@ Vagrant.configure(2) do |config|
     v.gui = false
   end
 
+  # The default base box does not support HyperV, we override a box that will.
+  config.vm.provider "hyperv" do |v, override|
+    override.vm.box = "withinboredom/Trusty64"
+  end
+
   # Install FRC API and Simulator according to https://wpilib.screenstepslive.com/s/4485/m/23353/l/228979-installing-frcsim-with-a-terminal
   config.vm.provision "shell", path: 'http://first.wpi.edu/FRC/roborio/release/frcsim-installer.sh', args: 'INSTALLER'
 end
