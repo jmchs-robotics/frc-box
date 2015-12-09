@@ -36,7 +36,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: 'http://first.wpi.edu/FRC/roborio/release/frcsim-installer.sh', args: 'INSTALLER'
 
   config.push.define "atlas" do |push|
-    push.app = "kepler/frc"
+    push.app = "judgement-call/frc"
     push.vcs = true
   end
 end
